@@ -1,11 +1,9 @@
 
 // import java.lang.reflect.Type;
-import java.io.Console;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,7 +12,7 @@ import com.google.gson.GsonBuilder;
 // import com.google.gson.reflect.TypeToken;
 import com.google.gson.reflect.TypeToken;
 
-public class Test {
+class Test {
     public static ArrayList<String> split(String str) {
         String pattern = "\n";
 
@@ -44,7 +42,7 @@ public class Test {
             // const { insert, ...attr } = cur;
 
             Object insert = cur.insert;
-            Optional<HashMap<String, String>> attr = cur.attributes;
+            HashMap<String, String> attr = cur.attributes;
 
             if (insert instanceof String) {
                 // 文本span
@@ -84,10 +82,10 @@ public class Test {
         return lines;
     }
 
-    public static <T> ArrayList<Op> convertListToMapList(ArrayList<T> list) {
+    public static ArrayList<Op> convertListToMapList(ArrayList<String> list) {
 
         ArrayList<Op> result = new ArrayList<>();
-        for (T t : list) {
+        for (String t : list) {
             Op data = new Op();
             // data.put("insert", t);
             data.insert = t;
@@ -107,13 +105,13 @@ class Line {
             this.spans.add(item);
     }
 
-    void set(Optional<HashMap<String, String>> attrs) {
+    void set(HashMap<String, String> attrs) {
         this.attributes = attrs;
     }
 
 }
 
-class M {
+public class M {
     public static void main(String[] args) {
         // Gson gson =
         GsonBuilder builder = new GsonBuilder();
@@ -123,7 +121,7 @@ class M {
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        String json = "{\"ops\":[{\"insert\":\"标题h1\"},{\"attributes\":{\"header\":1},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"加粗\"},{\"insert\":\"\\n\"},{\"insert\":{\"image\":\"https://image-1258234461.cos.ap-guangzhou.myqcloud.com/icon/OJScVUCuH.jpg\"}},{\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#cce0f5\"},\"insert\":\"浅蓝色\"},{\"attributes\":{\"background\":\"#cce0f5\",\"color\":\"#008a00\"},\"insert\":\"背景的拉风大姐\"},{\"attributes\":{\"background\":\"#cce0f5\"},\"insert\":\"激\"},{\"attributes\":{\"background\":\"#cce0f5\",\"color\":\"#ff9900\"},\"insert\":\"发打卡\"},{\"attributes\":{\"background\":\"#cce0f5\"},\"insert\":\"机\"},{\"insert\":\"\\n\\n\\n\\n\\n居中\"},{\"attributes\":{\"background\":\"yellow\"},\"insert\":\"————\"},{\"attributes\":{\"align\":\"center\"},\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#0066cc\"},\"insert\":\"靠右\"},{\"attributes\":{\"align\":\"right\"},\"insert\":\"\\n\"},{\"attributes\":{\"underline\":true},\"insert\":\"下划线\"},{\"insert\":\"\\n\"},{\"attributes\":{\"strike\":true},\"insert\":\"中划线\"},{\"insert\":\"\\n\"},{\"insert\":{\"formula\":\"e=mc^2\"}},{\"insert\":\" \\n\"}]}";
+        String json = "{\"ops\":[{\"insert\":\"标题h1\"},{\"attributes\":{\"header\":1},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"加粗\"},{\"insert\":\"\\n\"},{\"insert\":\"https://image-1258234461.cos.ap-guangzhou.myqcloud.com/icon/OJScVUCuH.jpg\"},{\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#cce0f5\"},\"insert\":\"浅蓝色\"},{\"attributes\":{\"background\":\"#cce0f5\",\"color\":\"#008a00\"},\"insert\":\"背景的拉风大姐\"},{\"attributes\":{\"background\":\"#cce0f5\"},\"insert\":\"激\"},{\"attributes\":{\"background\":\"#cce0f5\",\"color\":\"#ff9900\"},\"insert\":\"发打卡\"},{\"attributes\":{\"background\":\"#cce0f5\"},\"insert\":\"机\"},{\"insert\":\"\\n\\n\\n\\n\\n居中\"},{\"attributes\":{\"background\":\"yellow\"},\"insert\":\"————\"},{\"attributes\":{\"align\":\"center\"},\"insert\":\"\\n\"},{\"attributes\":{\"background\":\"#0066cc\"},\"insert\":\"靠右\"},{\"attributes\":{\"align\":\"right\"},\"insert\":\"\\n\"},{\"attributes\":{\"underline\":true},\"insert\":\"下划线\"},{\"insert\":\"\\n\"},{\"attributes\":{\"strike\":true},\"insert\":\"中划线\"},{\"insert\":\"\\n\"},{\"insert\":\"formula\"},{\"insert\":\" \\n\"}]}";
         // String json = "{}";
 
         Delta delta = gson.fromJson(json, type);
