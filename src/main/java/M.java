@@ -126,10 +126,12 @@ public class M {
 
         Delta delta = gson.fromJson(json, type);
 
-        System.out.println(delta);
+        // System.out.println(delta);
 
+        ArrayList<Line> list=Test.convert(delta);
         // Test c = new Test();
         // c.convert(delta);
+        System.out.println(list.size());
     }
 }
 
