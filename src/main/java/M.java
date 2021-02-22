@@ -41,7 +41,7 @@ class Test {
         for (Op cur : ops) {
             // const { insert, ...attr } = cur;
 
-            Object insert = cur.insert;
+            String insert = cur.insert;
             HashMap<String, String> attr = cur.attributes;
 
             if (insert instanceof String) {
