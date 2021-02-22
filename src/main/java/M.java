@@ -53,7 +53,7 @@ public class Test {
                 // 一般文本则长度为一，换行的长度至少为2
                 // ArrayList<Line> _lines = new ArrayList<Line>();
                 String str = (String) insert;
-                ArrayList<HashMap<String, String>> _lines = Test.convertListToMapList(Test.split(str));
+                ArrayList<Op> _lines = Test.convertListToMapList(Test.split(str));
 
                 // 是否换行
                 if (_lines.size() > 1) {
